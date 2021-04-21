@@ -1,0 +1,126 @@
+swagger: '2.0'
+info:
+  description: 3Skye interview test
+  version: 1.0.0
+  title: 'Swagger '
+host: 'localhost:8080'
+basePath: /v2
+tags:
+  - name: Accounts
+    description: Everything about accounts
+  - name: Assets
+    description: Departments
+schemes:
+  - http
+  
+paths:
+  /accounts:
+    post:
+      tags:
+        - Accounts
+      summary: create an account
+      description: 'Create an account'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: User
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Account'
+    get:
+      tags:
+        - Accounts
+      summary: search for accounts.  Returns any accounts that match the search string, and their most recent valuation.
+      parameters:
+        - in: query
+          name: s
+          type: string
+          description: A search string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Accounts'
+            
+  /accounts/{accountId}/holdings/{date}:
+    get:
+      tags:
+        - Accounts
+      summary: return all holdings held by the account at the given date, grouped by Asset class
+      parameters:
+        - in: path
+          name: accountId
+          type: number
+          required: true
+        - in: path
+          name: date
+          type: string
+          format: date
+          required: true
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Holdings'
+        404: 
+          description: accountId not found
+definitions:
+  Accounts:
+    type: array
+    items:
+      $ref: '#/definitions/AccountDetail'
+  AccountDetail:
+    type: object
+    properties:
+      accountName:
+        type: string
+      accountValue:
+        type: number
+      validAt:
+        type: string
+        format: date
+  Account:
+    type: object
+    properties:
+      accountName:
+        type: string
+  Holdings:
+    type: array
+    items:
+      $ref: '#/definitions/ClassHolding'
+  ClassHolding:
+    type: object
+    properties:
+      className:
+        type: string
+      isFixedInterest:
+        type: boolean
+      isCash:
+        type: boolean
+      totalValue:
+        type: number
+      holdings:
+        type: array
+        items:
+          $ref: '#/definitions/Holding'
+  Holding:
+    type: object
+    properties:
+      assetName:
+        type: string
+      isin:
+        type: string
+      nativeCurrency:
+        type: string
+      nativeValue:
+        type: number
+      value:
+        type: number
+      

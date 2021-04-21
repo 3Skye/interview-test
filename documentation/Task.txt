@@ -1,0 +1,28 @@
+3Skye back end developer tech test:
+
+Application stub
+Please check out the 3Skye interview application from Git.
+
+This is an application stub built with Spring Boot and Maven.  The existing application contains a basic database schema and sample data. The application is fully runnable and launches a webserver on localhost port 8080.  Currently a single API endpoint is implemented at GET /hello
+
+A schematic diagram of the included database is included at the end of this document, and the code is in /src/main/resources/data.sql. An H2 client is available at http://localhost:8080/h2-console
+
+Task
+Below is a swagger for a new API.  Please implement this swagger into the Spring Boot application.  
+
+For the purposes of the test, the following technique should be employed:
+•	Use Test Driven Development
+•	Please document any design decisions and algorithm choices, with reasoning.
+
+      
+Time limit: 1hr
+
+
+
+
+
+
+ 
+Appendix 1: Database schema
+
+ 
