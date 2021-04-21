@@ -15,6 +15,11 @@ For the purposes of the test, the following technique should be employed:
 •	Please document any design decisions and algorithm choices, with reasoning.
 
       
+Task 2
+A simple functions controller has been stubbed with some basic algorithms.  Please implement these.
+Both tasks are of equal importance, and you have 1 hour.  It is up to you how you division your time, but you need to have shown progress on both.
+      
+      
 Time limit: 1hr
 
 
